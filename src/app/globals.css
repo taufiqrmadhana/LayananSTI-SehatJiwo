@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black:wght@400&family=Open+Sans+Condensed:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oranienbaum&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.font-open-sans-condensed {
+  font-family: "Open Sans Condensed", sans-serif;
+}
+
+.font-archivo {
+  font-family: "Archivo Black", sans-serif;
+}
+
+.oranienbaum-regular {
+  font-family: "Oranienbaum", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.bg-gradient-right {
+  background: rgb(215, 91, 1);
+  background: radial-gradient(
+    circle,
+    rgba(215, 91, 1, 1) 15%,
+    rgba(241, 204, 50, 1) 29%,
+    rgba(246, 245, 246, 1) 43%
+  );
+}
+
+.bg-white-left {
+  background-color: #f6f5f6;
+}
+
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.main-content {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: 20px;
+  }
+}
+
+.fixed {
+  position: fixed;
+}
+
+.inset-0 {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.bg-gray-800 {
+  background-color: rgba(31, 41, 55, 0.75);
+}
+
+.bg-white {
+  background-color: white;
+}
+
+.w-64 {
+  width: 16rem;
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.shadow-lg {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d6dee1;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a8bbbf;
+}
+
+.bg-darkgreen {
+  background-color: #1a2b22; 
+}
+
+.bg-lightgreen {
+  background-color: #436850;
+}
+
+.calendar-custom .react-calendar__tile {
+  background-color: #1a2b22;
+  color: white;
+}
+
+.calendar-custom .react-calendar__tile--active {
+  background-color: #5d8d3e;
+}
+
+.calendar-custom .react-calendar__tile--now {
+  border: 2px solid #ffcc00;
+}
+
+h3 {
+  color: #ffcc00;
+}
+.react-calendar {
+  background-color: #12372a;
+  color: white;
+}
+
+.custom-tile {
+  background-color: #436850;
+  color: white;
+}
+
+.custom-tile:active,
+.custom-tile:hover {
+  background-color: #adbc9f;
+}
+
+.bg-dark-green {
+  background-color: #1d2b1f;
+}
+
+.bg-light-green {
+  background-color: #436850;
+}
+
+.text-white {
+  color: white;
+}
