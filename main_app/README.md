@@ -30,6 +30,7 @@
      ```bash
      npm run dev
      ```
+   - Open a new terminal to continue the next steps.
 
 4. **Install Dependencies and Start the Frontend**
    - Navigate to the `main_app` folder:
