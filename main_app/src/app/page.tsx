@@ -53,7 +53,7 @@ const HomePage = () => {
           src="/assets/pexels-cottonbro-4101143.jpg"
           alt="Hero Image"
           fill
-          objectFit="cover"
+          style={{ objectFit: 'cover' }}
           className="brightness-50"
         />
         <div className="absolute text-center animate-fadeIn">
