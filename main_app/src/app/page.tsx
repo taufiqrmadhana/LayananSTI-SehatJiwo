@@ -52,7 +52,7 @@ const HomePage = () => {
         <Image
           src="/assets/pexels-cottonbro-4101143.jpg"
           alt="Hero Image"
-          layout="fill"
+          fill
           objectFit="cover"
           className="brightness-50"
         />
