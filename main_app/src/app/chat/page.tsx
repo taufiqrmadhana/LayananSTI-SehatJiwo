@@ -1,10 +1,13 @@
+// pages/chat.js atau sesuai struktur proyek Anda
+
 "use client";
-import { createStyles, Card, Container, Text, ScrollArea, Avatar } from "@mantine/core";
+import { createStyles, Card, Text, ScrollArea } from "@mantine/core";
 import useSocketStore from "@/store/socket";
 import { useEffect, useRef, useState, useLayoutEffect } from "react";
 import { MessageWithMe, SocketPrivateMessage, SocketBroadcastMessage } from "@/types/next";
 import ChatroomTitle from "@/components/ChatroomTitle";
 import ChatroomInput from "@/components/ChatroomInput";
+import Header from "@/components/header"; // Pastikan path ini sesuai dengan struktur proyek Anda
 
 const useStyles = createStyles((theme) => ({
     rightMessageField: {
@@ -14,6 +17,10 @@ const useStyles = createStyles((theme) => ({
         width: "100%",
         marginTop: theme.spacing.xs,
         marginBottom: theme.spacing.xs,
+        // Responsive adjustment
+        [theme.fn.smallerThan("sm")]: {
+            flexDirection: "column-reverse",
+        },
     },
     rightMessage: {
         width: "fit-content",
@@ -26,10 +33,7 @@ const useStyles = createStyles((theme) => ({
             maxWidth: "35em",
         },
         [theme.fn.smallerThan("sm")]: {
-            maxWidth: "25em",
-        },
-        [theme.fn.smallerThan("xs")]: {
-            maxWidth: "15em",
+            maxWidth: "90%", // Adjusted for mobile
         },
     },
     leftMessageField: {
@@ -39,6 +43,10 @@ const useStyles = createStyles((theme) => ({
         position: "relative",
         marginTop: theme.spacing.xs,
         marginBottom: theme.spacing.xs,
+        // Responsive adjustment
+        [theme.fn.smallerThan("sm")]: {
+            flexDirection: "column",
+        },
     },
     leftMessage: {
         width: "fit-content",
@@ -51,10 +59,7 @@ const useStyles = createStyles((theme) => ({
             maxWidth: "35em",
         },
         [theme.fn.smallerThan("sm")]: {
-            maxWidth: "25em",
-        },
-        [theme.fn.smallerThan("xs")]: {
-            maxWidth: "15em",
+            maxWidth: "90%", // Adjusted for mobile
         },
     },
     avatar: {
@@ -65,6 +70,9 @@ const useStyles = createStyles((theme) => ({
         color: theme.colors.gray[5],
         marginRight: theme.spacing.xs,
         alignItems: "center",
+        [theme.fn.smallerThan("sm")]: {
+            marginBottom: theme.spacing.xs, // Add spacing below avatar on mobile
+        },
     },
 
     timestamp: {
@@ -76,6 +84,9 @@ const useStyles = createStyles((theme) => ({
         marginLeft: theme.spacing.xs,
         marginRight: theme.spacing.xs,
         alignItems: "flex-end",
+        [theme.fn.smallerThan("sm")]: {
+            alignSelf: "flex-end", // Align timestamp to the end on mobile
+        },
     },
 }));
 
@@ -121,34 +132,36 @@ export default function Home() {
     }, [messages]);
 
     return (
-        <>
-            <Container size="md" h={"100vh"}>
-                <Card
-                    shadow="sm"
-                    padding="sm"
-                    radius="md"
-                    withBorder
-                    h={"100%"}
-                    className="flex flex-col"
-                >
-                    <Card.Section
-                        component="a"
+        <div className="flex h-screen">
+            {/* Header Component */}
+            <Header />
+
+            {/* Main Content */}
+            <main className="flex-1 ml-0 md:ml-64 pt-16 md:pt-0 bg-[#FBFADA] overflow-y-auto">
+                <div className="p-2 sm:p-4 h-full">
+                    <Card
+                        shadow="sm"
+                        padding="sm"
+                        radius="md"
                         withBorder
-                        inheritPadding
-                        py="xs"
-                        h={"10%"}
-                        display={"flex"}
-                        mih={"65px"}
+                        className="flex flex-col h-full"
                     >
-                        <ChatroomTitle
-                            targetSocketId={targetSocketId}
-                            setTargetSocketId={setTargetSocketId}
-                        />
-                    </Card.Section>
-                    <Card.Section withBorder inheritPadding py="xs" h={"85%"} mih={"300px"}>
-                        <ScrollArea offsetScrollbars viewportRef={chatViewportRef} h={"100%"}>
-                            {messages.map((message, index) => {
-                                return (
+                        <Card.Section
+                            withBorder
+                            className="flex-none"
+                        >
+                            <ChatroomTitle
+                                targetSocketId={targetSocketId}
+                                setTargetSocketId={setTargetSocketId}
+                            />
+                        </Card.Section>
+                        <Card.Section className="flex-1 overflow-y-auto">
+                            <ScrollArea
+                                offsetScrollbars
+                                viewportRef={chatViewportRef}
+                                className="h-full"
+                            >
+                                {messages.map((message, index) => (
                                     <div
                                         className={
                                             message.me
@@ -171,36 +184,37 @@ export default function Home() {
                                                 </Avatar>
                                             </div>
                                         )}
-                                        <Text
-                                            className={
-                                                message.me
-                                                    ? classes.rightMessage
-                                                    : classes.leftMessage
-                                            }
-                                        >
-                                            {message.message.split("\n").map((line, index) => {
-                                                return (
-                                                    <span key={message.timestamp + index}>
+                                        <div className="flex flex-col">
+                                            <Text
+                                                className={
+                                                    message.me
+                                                        ? classes.rightMessage
+                                                        : classes.leftMessage
+                                                }
+                                                size="sm"
+                                            >
+                                                {message.message.split("\n").map((line, idx) => (
+                                                    <span key={idx}>
                                                         {line}
                                                         <br />
                                                     </span>
-                                                );
-                                            })}
-                                        </Text>
-                                        <Text size="xs" className={classes.timestamp}>
-                                            {new Date(message.timestamp).toLocaleTimeString()}
-                                        </Text>
+                                                ))}
+                                            </Text>
+                                            <Text size="xs" className={classes.timestamp}>
+                                                {new Date(message.timestamp).toLocaleTimeString()}
+                                            </Text>
+                                        </div>
                                     </div>
-                                );
-                            })}
-                        </ScrollArea>
-                    </Card.Section>
+                                ))}
+                            </ScrollArea>
+                        </Card.Section>
 
-                    <Card.Section withBorder h={"5%"} mih={"80px"}>
-                        <ChatroomInput targetSocketId={targetSocketId} />
-                    </Card.Section>
-                </Card>
-            </Container>
-        </>
+                        <Card.Section className="flex-none">
+                            <ChatroomInput targetSocketId={targetSocketId} />
+                        </Card.Section>
+                    </Card>
+                </div>
+            </main>
+        </div>
     );
 }

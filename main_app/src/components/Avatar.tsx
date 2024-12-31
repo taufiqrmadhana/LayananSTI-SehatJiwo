@@ -1,3 +1,6 @@
+// components/Avatar.js
+
+"use client";
 import { createStyles, Indicator, Overlay, Avatar as MantineAvatar } from "@mantine/core";
 import { IconPencil } from "@tabler/icons-react";
 import React, { useEffect, useState } from "react";
@@ -12,6 +15,9 @@ const useStyles = createStyles((theme, { isShown }: { isShown: boolean }) => ({
         opacity: !isShown ? "0" : "1",
         transition: "all .2s",
         visibility: !isShown ? "hidden" : "visible",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
     },
 }));
 
@@ -45,6 +51,7 @@ const Avatar = () => {
                     alt="User"
                     color="blue"
                     radius="xl"
+                    size="md" // Menyesuaikan ukuran avatar
                     onMouseEnter={() => setIsShown(true)}
                     onMouseLeave={() => setIsShown(false)}
                 >
@@ -57,7 +64,7 @@ const Avatar = () => {
                         className={classes.overlay}
                         onClick={modalOpen}
                     >
-                        <IconPencil size="1.5rem" />
+                        <IconPencil size="1.25rem" />
                     </Overlay>
                 </MantineAvatar>
             </Indicator>
