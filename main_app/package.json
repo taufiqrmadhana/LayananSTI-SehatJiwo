@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -H <IP> -p <PORT>",
+    "dev": "next dev -H 192.168.0.180 -p 3000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -15,6 +15,7 @@
     "react": "^19.0.0",
     "react-calendar": "^5.1.0",
     "react-dom": "^19.0.0",
+    "react-icons": "^4.10.1" ,
     "@emotion/react": "^11.11.1",
     "@mantine/core": "^6.0.15",
     "@mantine/form": "^6.0.15",

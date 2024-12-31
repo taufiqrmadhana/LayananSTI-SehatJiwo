@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import Header from '@/components/header';
-import Footer from '@/components/footer';
 import './globals.css'; 
+
 interface LayoutProps {
   children: ReactNode;
 }
@@ -21,8 +21,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       </head>
       <body className="bg-white relative overflow-x-hidden mx-auto">
         <Header />
-        {children}
-        {/* <Footer /> */}
+        <main className="pt-16 md:pt-0">
+          {children}
+        </main>
       </body>
     </html>
   );

@@ -5,8 +5,8 @@ export default function NotificationPage() {
   return (
     <div className="flex h-screen">
       <Header />
-      <main className="flex-1 ml-60 bg-[#FBFADA] overflow-y-auto">
-          <Notifications />
+      <main className="flex-1 ml-0 md:ml-64 bg-[#0F1E1E] overflow-y-auto">
+        <Notifications />
       </main>
     </div>
   );

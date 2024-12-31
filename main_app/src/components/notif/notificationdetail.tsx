@@ -26,9 +26,13 @@ const NotificationDetail: React.FC<NotificationDetailProps> = ({
       >
         &larr; Back to Notifications
       </button>
-      <h1 className="text-2xl font-semibold mb-4">{notification.title}</h1>
+      <h1 className="text-2xl font-semibold mb-4 truncate md:truncate-none">
+        {notification.title}
+      </h1>
       <p className="text-sm mb-2">{notification.time}</p>
-      <p className="text-base leading-relaxed">{notification.description}</p>
+      <p className="text-base leading-relaxed line-clamp-3 md:line-clamp-none">
+        {notification.description}
+      </p>
     </div>
   );
 };
